@@ -1,0 +1,21 @@
+.nav_header {
+    display: flex;
+    background-color: #ab99ca; 
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+.nav_item {
+    font-weight: 700;
+    padding: 20px 0;
+    font-size: 20px;
+    width: 50%;
+    text-align: center;
+    border: 1px solid slateblue;
+    text-decoration: none;
+}
+
+.nav_item:hover {
+    background-color: slateblue;
+    color: white;
+}
