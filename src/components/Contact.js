@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { useFormik } from 'formik'
 import "./Contact.css";
 import * as Yup from "yup"
@@ -7,7 +7,7 @@ import {TextField, FormControlLabel, Button, Switch, Typography, AlertTitle, Lin
 
 const Contact = () => {
   const baseURL="https://6362c4a766f75177ea37bfca.mockapi.io/player";
-  const [open, setOpen] = useState();
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
@@ -45,7 +45,7 @@ const Contact = () => {
           name: Yup.string().required("Required.").min(2, "Must be 2 characters or more"),
           nation: Yup.string().required("Required.").min(2, "Must be 2 characters or more"),
           club: Yup.string().required("Required.").min(2, "Must be 2 characters or more"),
-          program: Yup.number().integer().typeError("Please type a number."),
+          cost: Yup.number().integer().typeError("Please type a number."),
           description: Yup.string().required("Required.").min(10, "Must be 10 characters or more"),
           clip: Yup.string().required("Required.").min(10, "Must be 10 characters or more"),
           img: Yup.string().required("Required.").min(10, "Must be 10 characters or more"),
@@ -63,6 +63,7 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, name: true})}
             value={formik.values.name}
               onChange={formik.handleChange}
            />
@@ -74,10 +75,11 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, club: true})}
             value={formik.values.club}
               onChange={formik.handleChange}
           />
-          {formik.errors.club && formik.touched.name && (<Typography variant="caption" color="red">{formik.errors.club}</Typography>)}
+          {formik.errors.club && formik.touched.club && (<Typography variant="caption" color="red">{formik.errors.club}</Typography>)}
           <TextField
             margin="dense"
             name="nation"
@@ -85,10 +87,11 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, nation: true})}
             value={formik.values.nation}
               onChange={formik.handleChange}
           />
-          {formik.errors.nation && formik.touched.name && (<Typography variant="caption" color="red">{formik.errors.nation}</Typography>)}
+          {formik.errors.nation && formik.touched.nation && (<Typography variant="caption" color="red">{formik.errors.nation}</Typography>)}
           <TextField
             margin="dense"
             name="img"
@@ -96,10 +99,11 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, img: true})}
             value={formik.values.img}
               onChange={formik.handleChange}
           />
-          {formik.errors.img && formik.touched.name && (<Typography variant="caption" color="red">{formik.errors.img}</Typography>)}
+          {formik.errors.img && formik.touched.img && (<Typography variant="caption" color="red">{formik.errors.img}</Typography>)}
           <TextField
             margin="dense"
             name="cost"
@@ -107,10 +111,11 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, cost: true})}
             value={formik.values.cost}
               onChange={formik.handleChange}
           />
-          {formik.errors.cost && formik.touched.name && (<Typography variant="caption" color="red">{formik.errors.cost}</Typography>)}
+          {formik.errors.cost && formik.touched.cost && (<Typography variant="caption" color="red">{formik.errors.cost}</Typography>)}
           <TextField
             margin="dense"
             name="clip"
@@ -118,10 +123,11 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, clip: true})}
             value={formik.values.clip}
               onChange={formik.handleChange}
           />
-          {formik.errors.clip && formik.touched.name && (<Typography variant="caption" color="red">{formik.errors.clip}</Typography>)}
+          {formik.errors.clip && formik.touched.clip && (<Typography variant="caption" color="red">{formik.errors.clip}</Typography>)}
           <TextField
             multiline
             rows={2}
@@ -131,10 +137,11 @@ const Contact = () => {
             type="text"
             fullWidth
             variant="standard"
+            onBlur={() => formik.setTouched({...formik.touched, description: true})}
             value={formik.values.description}
               onChange={formik.handleChange}
           />
-          {formik.errors.description && formik.touched.name && (<Typography variant="caption" color="red" display="block">{formik.errors.description}</Typography>)}
+          {formik.errors.description && formik.touched.description && (<Typography variant="caption" color="red" display="block">{formik.errors.description}</Typography>)}
           <FormControlLabel control={<Switch/>}
           label="Top players" name='agree' 
             />
